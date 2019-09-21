@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'programe.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div >
+        <h3>{{ programe.type_info }}</h3>
+        <hr>
+        <h4>解决方案</h4>
+    </div>
+
+
+    <div class="produce-block">
+        <div class="row">
+            {% for produce in produces %}
+                <div class="col-sm-6 col-md-4">
+                    <a href="{% url 'produce_detail' produce.pk %}" class="thumbnail">
+                        <img src="{{ produce.image.url }}" alt="图片无法显示">
+                        <div class="caption">
+                        
+                            <h4>{{ produce.name }}</h4>
+                            <p>{{ produce.information }}</p>
+                        
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+   
+{% endblock %}
+
+{% block footer %}
+    <div class="footer">
+        <h3 >网站底部联系方式等信息</h3>
+    </div>
+{% endblock %}

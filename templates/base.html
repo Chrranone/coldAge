@@ -1,0 +1,109 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title></title>
+
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+
+    <link rel="stylesheet" href="{% static 'bootstrap3.37/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'jquery1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap3.37/js/bootstrap.min.js' %}"></script>
+
+    {% block header_extends %}{% endblock %}
+
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="{% url 'home' %}">冻龄时光</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  冻龄产品
+                <span class="caret"></spaglyphicon glyphicon-usern></a>
+              <ul class="dropdown-menu">
+                {% for produce_type in produce_types %}
+                    <li><a href="{% url 'produce_list' produce_type.pk %}">{{ produce_type.type_name }}</a></li>
+                    
+                {% endfor %}
+              </ul>
+            </li>
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  养肌/美妆教程
+                <span class="caret"></spaglyphicon glyphicon-usern></a>
+              <ul class="dropdown-menu">
+                {% for blog_type in blog_types %}
+                    <li><a href="{% url 'blogs_with_type' blog_type.pk %}">{{ blog_type.type_name }}</a></li>
+                    
+                {% endfor %}
+                
+              </ul>
+            </li>
+
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  护理方案定制
+                <span class="caret"></spaglyphicon glyphicon-usern></a>
+              <ul class="dropdown-menu">
+                {% for programe_type in programe_types %}
+                  <li><a href="{% url 'programe' programe_type.pk %}">{{ programe_type.type_name }}</a></li>
+                {% endfor %}
+                
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  冻龄法宝
+                <span class="caret"></spaglyphicon glyphicon-usern></a>
+              <ul class="dropdown-menu">
+                {% for produce_type_two in produce_types_two %}
+                  <li><a href="{% url 'produce_list_two' produce_type_two.pk %}">{{ produce_type_two.type_name }}</a></li>
+                {% endfor %}
+                
+              </ul>
+            </li>
+
+            
+            <li><a href="{% url 'questions' %}">皮肤测试N连问</a></li>
+
+          </ul>
+          
+          
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="warp">
+        <div class="main">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    
+    
+
+    {% block footer %}{% endblock %}
+    
+
+</body>
+</html>

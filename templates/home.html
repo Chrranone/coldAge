@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    {% for produce_type in produce_types %}
+    <div class="col-xs-10 col-xs-offset-1">
+        <div class="image-block">
+            <div class="center-block">
+                <div class="panel panel-default">
+                    <div class="panel-heading">{{produce_type.type_name}}</div>
+                    <div class="panel-body">
+                        <a href="{% url 'produce_list' produce_type.pk %}">
+                            <img src="{{ produce_type.type_image.url }}" class="img-responsive" alt="图片无法显示">
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+    
+    
+   
+{% endblock %}
+
+
+
